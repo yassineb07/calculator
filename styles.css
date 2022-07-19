@@ -15,8 +15,8 @@ body {
 .calculator {
   padding: 32px;
   border: 4px rgb(39, 17, 17) solid;
-  width: 380px;
-  height: 500px;
+/*   width: 380px;
+  height: 500px; */
   background-color: blanchedalmond;
 }
 
@@ -28,7 +28,9 @@ body {
   text-align: end;
   font-size: 32px;
 }
-
+.control {
+  margin-bottom: 32px;
+}
 .buttons {
   display: grid;
   grid-template-columns: auto auto auto auto;
