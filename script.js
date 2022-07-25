@@ -1,29 +1,88 @@
-function add(num1,num2){
-  return num1 + num2
+const display = document.querySelector('.display');
+const numbers = document.querySelectorAll('[data-number]');
+const operators = document.querySelectorAll('[data-operator]');
+const equalButton = document.querySelector('[data-equal]');
+const clearButton = document.querySelector('[data-clear]');
+
+const operation = {
+  currentNumber:'',
+  previousNumber:'',
+  operator:undefined,
+}
+
+function clear(){
+  operation.previousNumber = '';
+  operation.currentNumber = '';
+  operation.operator = undefined;
 };
 
-function subtract(num1,num2){
-  return num1 - num2
+function addNumber(number){
+  if(number === '.' && operation.currentNumber.includes('.')) return;
+  operation.currentNumber += number; 
 };
 
-function multiply(num1,num2){
-  return num1 * num2
+function chooseOperator(operator){
+  if(operation.currentNumber ==='') return;
+  if(operation.previousNumber !==''){
+    let result = operate(operation);
+    display.innerText = result
+  };
+  operation.operator = operator;
+  operation.previousNumber = operation.currentNumber;
+  operation.currentNumber = '';
 };
 
-function divide(num1,num2){
-  return num1 / num2
-};
-
-function operate(op,num1,num2){
-  switch(op){
+function operate(operation){
+  let result;
+  const previous = Number(operation.previousNumber);
+  const current = Number(operation.currentNumber);
+  if(isNaN(previous) || isNaN(current)) return;
+  switch(operation.operator){
     case '+':
-      return add(num1,num2)
+      result = previous + current;
+      break;
     case '-':
-      return subtract(num1,num2)
+      result = previous - current;
+      break;
     case '*':
-      return multiply(num1,num2)
+      result = previous * current;
+      break
     case '/':
-      return divide(num1,num2)
+      result = previous / current;
+      break;
+    default:
+      return
   }
+  operation.currentNumber = result;
+  operation.operator = undefined;
+  operation.previousNumber = '';
+  return result
 };
 
+function updateDisplay(){
+  display.innerText = operation.currentNumber
+};
+
+clearButton.addEventListener('click',function(){
+  clear();
+  updateDisplay();
+});
+
+numbers.forEach(number => {
+  number.addEventListener('click',() => {
+    addNumber(number.innerText);
+    updateDisplay();
+  })
+});
+
+operators.forEach(operator => {
+  operator.addEventListener('click',() => {
+    chooseOperator(operator.innerText);
+  })
+});
+
+equalButton.addEventListener('click',() => {
+  operate(operation);
+  updateDisplay();
+  clear()
+});

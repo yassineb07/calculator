@@ -21,19 +21,23 @@ body {
 }
 
 .display {
-  border: 2px black solid;
+  height: 82px;
   background-color: azure;
-  padding: 16px;
-  margin-bottom: 32px;
-  text-align: end;
+  border: 2px black solid;
   font-size: 32px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 0 10px;
+  
 }
 .control {
   margin-bottom: 32px;
 }
 .buttons {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(4,auto);
   gap: 24px 24px;
 }
 
