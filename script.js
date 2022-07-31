@@ -41,13 +41,13 @@ function operate(operation){
     case '+':
       result = previous + current;
       break;
-    case '-':
+    case '−':
       result = previous - current;
       break;
-    case '*':
+    case '×':
       result = previous * current;
       break
-    case '/':
+    case '÷':
       result = previous / current;
       break;
     default:
@@ -63,7 +63,7 @@ function updateDisplay(){
   display.innerText = operation.currentNumber
 };
 
-clearButton.addEventListener('click',function(){
+clearButton.addEventListener('click',() => {
   clear();
   updateDisplay();
 });
