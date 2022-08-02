@@ -39,7 +39,7 @@ body {
 .control {
   margin: 2px white solid;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: auto auto;
 }
 .buttons {
   flex-grow: 1;

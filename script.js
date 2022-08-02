@@ -3,6 +3,7 @@ const numbers = document.querySelectorAll('[data-number]');
 const operators = document.querySelectorAll('[data-operator]');
 const equalButton = document.querySelector('[data-equal]');
 const clearButton = document.querySelector('[data-clear]');
+const backSpace = document.querySelector('[data-back]');
 
 const operation = {
   currentNumber:'',
@@ -67,6 +68,12 @@ clearButton.addEventListener('click',() => {
   clear();
   updateDisplay();
 });
+
+backSpace.addEventListener('click',() => {
+  if(operation.currentNumber === '') return;
+  operation.currentNumber = operation.currentNumber.substring(0,operation.currentNumber.length - 1);
+  updateDisplay();
+})
 
 numbers.forEach(number => {
   number.addEventListener('click',() => {
