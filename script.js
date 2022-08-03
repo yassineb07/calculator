@@ -19,6 +19,7 @@ function clear(){
 
 function addNumber(number){
   if(number === '.' && operation.currentNumber.includes('.')) return;
+  if(operation.currentNumber.length > 10) return;
   operation.currentNumber += number; 
 };
 
@@ -54,6 +55,7 @@ function operate(operation){
     default:
       return
   }
+  result = +result.toFixed(4);
   operation.currentNumber = result;
   operation.operator = undefined;
   operation.previousNumber = '';
@@ -91,5 +93,4 @@ operators.forEach(operator => {
 equalButton.addEventListener('click',() => {
   operate(operation);
   updateDisplay();
-  clear()
 });

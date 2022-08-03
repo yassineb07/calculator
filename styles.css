@@ -41,6 +41,7 @@ body {
   display: grid;
   grid-template-columns: auto auto;
 }
+
 .buttons {
   flex-grow: 1;
   display: grid;
